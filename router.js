@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const petController = require("./controllers/petController")
-
+const contactController = require("./controllers/contactController")
 // main routes
 router.get("/", petController.homepage)
 router.get("/admin", petController.adminPage)
@@ -16,5 +16,14 @@ router.get("/admin/edit-pet/:id", petController.onlyAdmin, petController.editPag
 router.post("/admin/edit-pet", petController.onlyAdmin, petController.actuallyUpdatePet)
 router.post("/admin/delete-pet", petController.onlyAdmin, petController.deletePet)
 router.post("/admin/delete-pet-async", petController.onlyAdmin, petController.deletePetAsync)
+
+
+router.post("/submit-content", contactController.submitContact)
+router.get("/admin/view-pet-contacts/:id", petController.onlyAdmin, contactController.viewPetContacts);
+
+
+console.log('petController:', petController);
+console.log('contactController:', contactController);
+
 
 module.exports = router
